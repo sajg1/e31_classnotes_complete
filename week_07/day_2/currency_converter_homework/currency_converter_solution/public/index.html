@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Currency Converter</title>
+  <script src="./js/bundle.js"></script>
+</head>
+<body>
+  <h1>Currency Converter</h1>
+
+  <div id="app">
+
+    <select v-model="selectedOperation">
+      <option disabled value="">Select an Operation</option>
+      <option v-for="operation in operations">{{operation}}</option>
+    </select>
+
+    <input type="number" v-model="amount"/>
+
+    <label for="base-currency-select">Select Currency:</label>
+    <select v-model="baseCurrency" id="base-currency-select">
+      <option disabled value="">Select Currency</option>
+      <option v-for="(value, key) in rates" :value="key">{{ key }}</option>
+    </select>
+
+    <label for="cross-currency-select" v-if="selectedOperation === 'Convert Cross Currency'">Convert To:</label>
+    <select v-if="selectedOperation === 'Convert Cross Currency'" v-model="convertedCurrency">
+      <option disabled value="">Select Currency</option>
+      <option v-for="(value, key) in rates" :value="key">{{ key }}</option>
+    </select>
+
+    <div v-if="selectedOperation && amount && baseCurrency" id="result-display">
+      <h2 v-if="selectedOperation === 'Convert from Euros'">{{amount}} Euros = {{convertFromEuros | twoDecimalPlaces}} {{baseCurrency}}</h2>
+      <h2 v-if="selectedOperation === 'Convert to Euros'">{{amount}} {{baseCurrency}} = {{convertToEuros | twoDecimalPlaces}} Euros</h2>
+      <h2 v-if="selectedOperation === 'Convert Cross Currency' && convertedCurrency">{{amount}} {{baseCurrency}} = {{convertCrossCurrency | twoDecimalPlaces }} {{convertedCurrency}}</h2>
+    </div>
+
+  </div>
+
+</body>
+</html>

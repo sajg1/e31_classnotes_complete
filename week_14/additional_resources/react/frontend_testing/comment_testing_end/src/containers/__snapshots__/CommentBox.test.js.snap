@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentBox should render correctly 1`] = `
+<div
+  className="comment-box"
+>
+  <h2>
+    Add a Comment
+  </h2>
+  <CommentForm
+    onCommentSubmit={[Function]}
+  />
+  <h2>
+    Comments
+  </h2>
+  <CommentList
+    data={
+      Array [
+        Object {
+          "author": "Colin",
+          "id": 1,
+          "text": "Our comments are still hanging around.",
+        },
+        Object {
+          "author": "Jarrod",
+          "id": 2,
+          "text": "React has converted me, I was wrong to be #teamjava.",
+        },
+      ]
+    }
+  />
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      id="delete-button"
+      type="submit"
+      value="Delete Comments"
+    />
+  </form>
+</div>
+`;
